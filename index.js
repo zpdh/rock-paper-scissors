@@ -3,49 +3,110 @@
 function getComputerChoice() {
 const choices = ["rock", "paper", "scissors"]
 let random = Math.floor(Math.random() * 3)
-let computerChoice = choices[random]
-return computerChoice
+let computerPrompt = choices[random]
+return computerPrompt
 }
 
 //Player Selection 
 
 function getPlayerChoice() {
-    let playerChoice = prompt("Choose rock, paper or scissors.", "")
-    if (playerChoice.toLowerCase() == 'rock' || playerChoice.toLowerCase() == 'paper' || playerChoice.toLowerCase() == 'scissors') {
-        return playerChoice.toLowerCase()
+    let playerPrompt = prompt("Choose rock, paper or scissors.", "")
+    if (playerPrompt.toLowerCase() == 'rock' || playerPrompt.toLowerCase() == 'paper' || playerPrompt.toLowerCase() == 'scissors') {
+        return playerPrompt.toLowerCase()
     }
     else {
         alert("Invalid option!")
     }
-}
 
+// Round
+
+}
 function playRound() {
-    let playerInput = getPlayerChoice()
-    let computerInput = getComputerChoice()
-    let result
+let result
+computerChoice = getComputerChoice()
+playerChoice = getPlayerChoice()
 
-    function victory() {
-    alert(`You Won! ${playerInput} beats ${computerInput}`)
-    }
-    if (playerInput == 'rock' && computerInput == 'scissors' || playerInput == 'paper' && computerInput == 'rock' || playerInput == 'scissors' && computerInput == 'paper') {
-        let result = victory()
-    }
+    if (playerChoice === undefined || playerChoice === null) {
+        result = 'no result'
 
-
-    function loss() {
-    alert(`You lost! ${computerInput} beats ${playerInput}`)
     }
-    if (playerInput == 'rock' && computerInput == 'paper' || playerInput == 'paper' && computerInput == 'scissors' || playerInput == 'scissors' && computerInput == 'rock') {
-    let result = loss()
+    else if (playerChoice === computerChoice) {
+        result = 'tied'
     }
     
-    function tie() {
-        alert('You tied!')
+    else if (playerChoice == 'rock' && computerChoice == 'scissors' || playerChoice == 'paper' && computerChoice == 'rock' || playerChoice == 'scissors' && computerChoice == 'paper'){
+        result = 'won'
     }
-    if (playerInput == 'rock' && computerInput == 'rock' || playerInput == 'paper' && computerInput == 'paper' || playerInput == 'scissors' && computerInput == 'scissors') {
-        let result = tie()
+
+    else {
+        result = 'lost'
     }
-    
-    return result
+    if (result != 'no result') {
+alert(`You ${result}. Computer chose ${computerChoice}`)
+    }
+
+return result
 }
 
+// Match
+
+function playMatch() {
+let score = 0
+alert('Round one!')
+let roundOne = playRound()
+if (roundOne == 'won') {
+    score = score + 1
+}
+
+else if (roundOne == 'lost') {
+    score = score - 1
+}
+
+alert('Round two!')
+let roundTwo = playRound()
+
+if (roundTwo == 'won') {
+    score = score + 1
+}
+
+else if (roundTwo == 'lost') {
+    score = score - 1
+}
+
+alert('Round three!')
+let roundThree = playRound()
+
+if (roundThree == 'won') {
+    score = score + 1
+}
+
+else if (roundThree == 'lost') {
+    score = score - 1
+}
+
+alert('Round four!')
+let roundFour = playRound()
+
+if (roundFour == 'won') {
+    score = score + 1
+}
+
+else if (roundFour == 'lost') {
+    score = score - 1
+}
+
+alert('Round five!')
+let roundFive = playRound()
+
+if (roundFive == 'won') {
+    score = score + 1
+}
+
+else if (roundFive == 'lost') {
+    score = score - 1
+}
+
+alert(`Your final score is ${score}.`)
+return score
+
+}
