@@ -22,28 +22,30 @@ function getPlayerChoice() {
 function playRound() {
     let playerInput = getPlayerChoice()
     let computerInput = getComputerChoice()
+    let result
+
+    function victory() {
+    alert(`You Won! ${playerInput} beats ${computerInput}`)
+    }
+    if (playerInput == 'rock' && computerInput == 'scissors' || playerInput == 'paper' && computerInput == 'rock' || playerInput == 'scissors' && computerInput == 'paper') {
+        let result = victory()
+    }
+
+
+    function loss() {
+    alert(`You lost! ${computerInput} beats ${playerInput}`)
+    }
+    if (playerInput == 'rock' && computerInput == 'paper' || playerInput == 'paper' && computerInput == 'scissors' || playerInput == 'scissors' && computerInput == 'rock') {
+    let result = loss()
+    }
     
-    //Case rock
-    if (playerInput == 'rock' && computerInput == 'rock')
-    alert('You tied!')
-    if (playerInput == 'rock' && computerInput == 'paper')
-    alert('You lost! Paper beats rock!')
-    if (playerInput == 'rock' && computerInput == 'scissors')
-    alert('You won! Rock beats scissor!')
-
-    //Case paper
-    if (playerInput == 'paper' && computerInput == 'paper')
-    alert('You tied!')
-    if (playerInput == 'paper' && computerInput == 'scissors')
-    alert('You lost! Scissors beat paper')
-    if (playerInput == 'paper' && computerInput == 'rock')
-    alert('You won! Paper beats rock!')
-
-    //Case scissors
-    if (playerInput == 'scissors' && computerInput == 'scissors')
-    alert('You tied!')
-    if (playerInput == 'scissors' && computerInput == 'rock')
-    alert('You lost! Rock beats scissors!')
-    if (playerInput == 'scissors' && computerInput == 'paper')
-    alert('You won! Scissors beat paper!')
+    function tie() {
+        alert('You tied!')
+    }
+    if (playerInput == 'rock' && computerInput == 'rock' || playerInput == 'paper' && computerInput == 'paper' || playerInput == 'scissors' && computerInput == 'scissors') {
+        let result = tie()
+    }
+    
+    return result
 }
+
