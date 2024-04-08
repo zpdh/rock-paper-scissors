@@ -28,13 +28,7 @@ const scoreFiller = document.getElementById('scorefiller')
 
 function playRound() {
 computerChoice = getComputerChoice()
-if (userScore == 5){ 
-    scoreInfo.textContent = `You won!`
-    scoreFiller.textContent = `Click a button to try again!`
-    userScore = 0
-    aiScore = 0
-} if (aiScore == 5) {
-    scoreInfo.textContent = `You lost!`
+if (userScore == 5 || aiScore == 5){ 
     scoreFiller.textContent = `Click a button to try again!`
     userScore = 0
     aiScore = 0
