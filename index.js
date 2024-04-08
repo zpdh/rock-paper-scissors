@@ -1,112 +1,61 @@
-//Computer Selection
+let userScore = 0
+let aiScore = 0
+const playerScore = document.getElementById('scoreplayer')
+const computerScore = document.getElementById('scorecomputer')
 
+//Computer Selection
 function getComputerChoice() {
 const choices = ["rock", "paper", "scissors"]
 let random = Math.floor(Math.random() * 3)
-let computerPrompt = choices[random]
-return computerPrompt
+let computerChoice = choices[random]
+return computerChoice
 }
 
 //Player Selection 
+let playerChoice = ''
 
-function getPlayerChoice() {
-    let playerPrompt = prompt("Choose rock, paper or scissors.", "")
-    if (playerPrompt.toLowerCase() == 'rock' || playerPrompt.toLowerCase() == 'paper' || playerPrompt.toLowerCase() == 'scissors') {
-        return playerPrompt.toLowerCase()
-    }
-    else {
-        alert("Invalid option!")
-    }
+const rockBtn = document.getElementById('rockbtn')
+const paperBtn = document.getElementById('paperbtn')
+const scissorsBtn = document.getElementById('scissorbtn')
+
+rockBtn.addEventListener('click', () => playerChoice = 'rock')
+paperBtn.addEventListener('click', () => playerChoice = 'paper')
+scissorsBtn.addEventListener('click', () => playerChoice = 'scissors')
 
 // Round
+const scoreInfo = document.getElementById('scoreinfo')
+const scoreFiller = document.getElementById('scorefiller')
 
-}
 function playRound() {
-let result
 computerChoice = getComputerChoice()
-playerChoice = getPlayerChoice()
-
-    if (playerChoice === undefined || playerChoice === null) {
-        result = 'no result'
-
+if (userScore == 5){ 
+    scoreInfo.textContent = `You won!`
+    scoreFiller.textContent = `Click a button to try again!`
+    userScore = 0
+    aiScore = 0
+} if (aiScore == 5) {
+    scoreInfo.textContent = `You lost!`
+    scoreFiller.textContent = `Click a button to try again!`
+    userScore = 0
+    aiScore = 0
+    } else if (playerChoice === computerChoice) {
+    scoreInfo.textContent = `You tied!`
+    scoreFiller.textContent = `Computer chose ${computerChoice}.`
+    playerScore.textContent = `Player: ${userScore}`
+    computerScore.textContent = `Computer: ${aiScore}`
+    } else if (playerChoice == 'rock' && computerChoice == 'scissors' || playerChoice == 'paper' && computerChoice == 'rock' || playerChoice == 'scissors' && computerChoice == 'paper'){
+        scoreInfo.textContent = `You won!`
+        scoreFiller.textContent = `Computer chose ${computerChoice}.`
+        ++userScore
+        playerScore.textContent = `Player: ${userScore}`
+        computerScore.textContent = `Computer: ${aiScore}`
+    } else {
+        scoreInfo.textContent = `You lost!`
+        scoreFiller.textContent = `Computer chose ${computerChoice}.`
+        ++aiScore
+        playerScore.textContent = `Player: ${userScore}`
+        computerScore.textContent = `Computer: ${aiScore}`
     }
-    else if (playerChoice === computerChoice) {
-        result = 'tied'
-    }
-    
-    else if (playerChoice == 'rock' && computerChoice == 'scissors' || playerChoice == 'paper' && computerChoice == 'rock' || playerChoice == 'scissors' && computerChoice == 'paper'){
-        result = 'won'
-    }
-
-    else {
-        result = 'lost'
-    }
-    if (result != 'no result') {
-alert(`You ${result}. Computer chose ${computerChoice}`)
-    }
-
-return result
-}
-
-// Match
-
-function playMatch() {
-let score = 0
-alert('Round one!')
-let roundOne = playRound()
-if (roundOne == 'won') {
-    score = score + 1
-}
-
-else if (roundOne == 'lost') {
-    score = score - 1
-}
-
-alert('Round two!')
-let roundTwo = playRound()
-
-if (roundTwo == 'won') {
-    score = score + 1
-}
-
-else if (roundTwo == 'lost') {
-    score = score - 1
-}
-
-alert('Round three!')
-let roundThree = playRound()
-
-if (roundThree == 'won') {
-    score = score + 1
-}
-
-else if (roundThree == 'lost') {
-    score = score - 1
-}
-
-alert('Round four!')
-let roundFour = playRound()
-
-if (roundFour == 'won') {
-    score = score + 1
-}
-
-else if (roundFour == 'lost') {
-    score = score - 1
-}
-
-alert('Round five!')
-let roundFive = playRound()
-
-if (roundFive == 'won') {
-    score = score + 1
-}
-
-else if (roundFive == 'lost') {
-    score = score - 1
-}
-
-alert(`Your final score is ${score}.`)
-return score
 
 }
+
